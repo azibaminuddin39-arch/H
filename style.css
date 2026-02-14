@@ -168,7 +168,7 @@ body::before {
     color: #e0e0e0;
     line-height: 1.6;
     font-weight: 300;
-    font-style: italic;
+    font-style: normal;
 }
 
 /* --- 9. TOMBOL (ICON + TEXT) --- */
@@ -236,3 +236,4 @@ body::before {
         padding: 14px 0;
     }
 }
+

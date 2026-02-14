@@ -1,61 +1,65 @@
-/* --- 1. RESET & DASAR --- */
+/* --- 1. SETUP FONT CUSTOM (AOTTEN) --- */
+/* Wajib punya file Aotten.otf atau Aotten.ttf di folder yang sama */
+@font-face {
+    font-family: 'Aotten';
+    src: url('Aotten.otf') format('opentype'),
+         url('Aotten.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* --- 2. RESET & DASAR --- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    -webkit-tap-highlight-color: transparent; /* Hilangkan blok biru saat klik di Android */
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* Fallback warna hitam (agar tidak putih jika gambar belum load) */
 html {
-    background-color: #000;
+    background-color: #000; /* Warna cadangan jika gambar gagal load */
 }
 
 body {
     font-family: 'Lato', sans-serif;
     color: white;
     
-    /* PENTING: Background kita pindah ke ::before agar stabil di HP */
-    
-    /* Layout Center */
+    /* Center Layout */
     display: flex;
     justify-content: center;
     align-items: center; 
     
-    /* Gunakan 100dvh agar pas dengan browser HP modern */
     min-height: 100vh;
     min-height: 100dvh; 
     
-    /* Memberi jarak atas bawah agar tidak mentok saat di-scroll */
     padding: 20px 0; 
     position: relative;
 }
 
-/* --- SOLUSI LAYAR PUTIH (BACKGROUND TETAP) --- */
+/* --- 3. BACKGROUND ANTI-SCROLL (FIX LAYAR PUTIH) --- */
 body::before {
     content: "";
-    position: fixed; /* Kunci background agar tidak ikut scroll/naik turun */
+    position: fixed; /* Kunci mati background */
     top: 0; 
     left: 0;
     width: 100%;
     height: 100%;
     
-    /* Gambar Background */
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('bg.jpg');
+    /* GANTI 'bg.jpg' DENGAN NAMA FILE BACKGROUND ANDA */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('bg.jpg');
     background-size: cover;      
     background-position: center; 
     background-repeat: no-repeat;
     
-    z-index: -1; /* Taruh di paling belakang */
-    will-change: transform; /* Optimasi untuk iPhone */
+    z-index: -1; 
+    will-change: transform;
 }
 
-/* --- 2. KONTAINER UTAMA (KARTU KACA) --- */
+/* --- 4. KARTU UTAMA (GLASSMORPHISM) --- */
 .phone-container {
-    width: 90%; /* Lebar fleksibel */
-    max-width: 420px; /* Batas maksimal lebar */
+    width: 90%; 
+    max-width: 420px; 
     
-    /* Glassmorphism (Efek Kaca) */
     background-color: rgba(0, 0, 0, 0.3); 
     backdrop-filter: blur(8px); 
     -webkit-backdrop-filter: blur(8px); 
@@ -73,7 +77,7 @@ body::before {
     align-items: center;
 }
 
-/* --- 3. JUDUL UTAMA (PRATA) --- */
+/* --- 5. LOGO UTAMA (CINZEL) --- */
 .brand-section {
     margin-bottom: 25px;
     margin-top: 5px;
@@ -81,13 +85,14 @@ body::before {
 }
 
 .brand-name {
-    font-family: 'Prata', serif; 
-    font-weight: 400; 
-    font-size: 3rem; 
-    line-height: 1.1;
+    font-family: 'Cinzel', serif; /* Font Logo Baru */
+    font-weight: 600; 
+    font-size: 2.8rem; 
+    line-height: 1.2;
     margin-bottom: 5px;
     color: white;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+    letter-spacing: 2px; /* Jarak antar huruf */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4); /* Efek Glowing */
 }
 
 .brand-sub {
@@ -100,11 +105,11 @@ body::before {
     margin-top: 5px;
 }
 
-/* --- 4. SLIDESHOW (LANDSCAPE 16:9) --- */
+/* --- 6. SLIDESHOW (16:9) --- */
 .slider-container {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Kunci rasio */
+    aspect-ratio: 16 / 9; 
     margin-bottom: 25px;
     
     border-radius: 8px; 
@@ -119,8 +124,7 @@ body::before {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    top: 0; 
-    left: 0;
+    top: 0; left: 0;
     opacity: 0;
     animation: fade 20s infinite;
 }
@@ -133,7 +137,6 @@ body::before {
     100% { opacity: 0; }
 }
 
-/* Jadwal Animasi */
 .slider-wrapper img:nth-child(1) { animation-delay: 0s; }
 .slider-wrapper img:nth-child(2) { animation-delay: 4s; }
 .slider-wrapper img:nth-child(3) { animation-delay: 8s; }
@@ -141,18 +144,20 @@ body::before {
 .slider-wrapper img:nth-child(5) { animation-delay: 16s; }
 
 
-/* --- 5. SUBTITLE SAMBUNG (GREAT VIBES) --- */
+/* --- 7. JUDUL "Wedding Documentation" (AOTTEN) --- */
 .script-title h2 {
-    font-family: 'Great Vibes', cursive;
+    /* Prioritas: Aotten (file sendiri) -> Pinyon (Google Font) -> Cursive */
+    font-family: 'Aotten', 'Pinyon Script', cursive; 
     font-weight: 400;
-    font-size: 2.2rem;
+    font-size: 2.5rem; /* Ukuran disesuaikan */
     color: #f0f0f0;
     margin-bottom: 15px;
-    margin-top: 0;
+    margin-top: 10px;
     text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+    line-height: 1.3;
 }
 
-/* --- 6. DESKRIPSI --- */
+/* --- 8. DESKRIPSI --- */
 .description-area {
     width: 100%;
     margin-bottom: 30px;
@@ -166,7 +171,7 @@ body::before {
     font-style: italic;
 }
 
-/* --- 7. TOMBOL LINKS (DENGAN LOGO) --- */
+/* --- 9. TOMBOL (ICON + TEXT) --- */
 .links-area {
     width: 100%;
     display: flex;
@@ -175,7 +180,6 @@ body::before {
 }
 
 .btn {
-    /* Flexbox untuk menengahkan Logo + Teks */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -203,10 +207,10 @@ body::before {
 }
 
 .btn i {
-    font-size: 1.2rem; /* Ukuran Logo */
+    font-size: 1.2rem; 
 }
 
-/* --- 8. FOOTER --- */
+/* --- 10. FOOTER --- */
 .footer-area {
     margin-top: 40px;
     font-size: 0.65rem;
@@ -215,17 +219,17 @@ body::before {
     opacity: 0.8;
 }
 
-/* --- 9. RESPONSIVE (KHUSUS HP KECIL) --- */
+/* --- 11. RESPONSIVE HP KECIL --- */
 @media screen and (max-width: 380px) {
     .phone-container {
         padding: 30px 15px;
         width: 95%;
     }
     .brand-name {
-        font-size: 2.5rem; 
+        font-size: 2.2rem; 
     }
     .script-title h2 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     .btn {
         font-size: 0.75rem; 

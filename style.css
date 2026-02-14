@@ -1,81 +1,109 @@
-/* --- RESET --- */
+/* --- 1. RESET & DASAR --- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent; /* Hilangkan blok biru saat klik di Android */
 }
 
 body {
     font-family: 'Lato', sans-serif;
     color: white;
+    
+    /* Background Tetap */
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('bg.jpg');
     background-size: cover;      
     background-position: center; 
     background-attachment: fixed;
+
+    /* PENINGKATAN STABILITAS LAYOUT HP */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
+    
+    /* Gunakan 100dvh agar pas dengan browser HP modern (Chrome/Safari) */
     min-height: 100vh;
+    min-height: 100dvh; 
+    
+    /* Memberi jarak atas bawah agar tidak mentok saat di-scroll */
+    padding: 20px 0; 
 }
 
+/* --- 2. KONTAINER UTAMA (KARTU KACA) --- */
 .phone-container {
-    width: 100%;
-    max-width: 400px;
-    background-color: rgba(0, 0, 0, 0.2); 
-    backdrop-filter: blur(3px);
+    width: 90%; /* Lebar fleksibel (90% dari layar HP) */
+    max-width: 420px; /* Batas maksimal lebar agar tidak terlalu lebar di Tablet */
+    
+    /* Glassmorphism (Efek Kaca) */
+    background-color: rgba(0, 0, 0, 0.3); 
+    backdrop-filter: blur(8px); /* Blur lebih kuat agar teks jelas */
+    -webkit-backdrop-filter: blur(8px); /* Support iPhone */
+    
     padding: 40px 25px;
     text-align: center;
     position: relative;
+    
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 90vh;
 }
 
-/* JUDUL (PRATA) */
+/* --- 3. JUDUL UTAMA (HULAIF - PRATA) --- */
 .brand-section {
     margin-bottom: 25px;
-    margin-top: 10px;
+    margin-top: 5px;
+    width: 100%;
 }
+
 .brand-name {
     font-family: 'Prata', serif; 
     font-weight: 400; 
-    font-size: 3rem;
-    line-height: 1;
-    margin-bottom: 8px;
+    font-size: 3rem; /* Ukuran Besar */
+    line-height: 1.1;
+    margin-bottom: 5px;
     color: white;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
 }
+
 .brand-sub {
     font-family: 'Lato', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     letter-spacing: 6px;
     text-transform: uppercase;
     font-weight: 300;
     opacity: 0.9;
+    margin-top: 5px;
 }
 
-/* SLIDESHOW (LANDSCAPE 16:9) */
+/* --- 4. SLIDESHOW (LANDSCAPE 16:9) --- */
 .slider-container {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
-    margin-bottom: 20px;
+    aspect-ratio: 16 / 9; /* Kunci rasio agar stabil */
+    margin-bottom: 25px;
+    
+    border-radius: 8px; 
     overflow: hidden;
-    border-radius: 4px; 
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    background-color: #000;
 }
+
 .slider-wrapper img {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    top: 0;
+    top: 0; 
     left: 0;
     opacity: 0;
     animation: fade 20s infinite;
 }
+
 @keyframes fade {
     0% { opacity: 0; }
     10% { opacity: 1; }
@@ -83,76 +111,104 @@ body {
     30% { opacity: 0; }
     100% { opacity: 0; }
 }
+
+/* Jadwal Animasi */
 .slider-wrapper img:nth-child(1) { animation-delay: 0s; }
 .slider-wrapper img:nth-child(2) { animation-delay: 4s; }
 .slider-wrapper img:nth-child(3) { animation-delay: 8s; }
 .slider-wrapper img:nth-child(4) { animation-delay: 12s; }
 .slider-wrapper img:nth-child(5) { animation-delay: 16s; }
 
-/* TULISAN SAMBUNG */
+
+/* --- 5. SUBTITLE SAMBUNG (GREAT VIBES) --- */
 .script-title h2 {
     font-family: 'Great Vibes', cursive;
     font-weight: 400;
     font-size: 2.2rem;
-    color: #fff;
+    color: #f0f0f0;
     margin-bottom: 15px;
-    margin-top: 5px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    margin-top: 0;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.7);
 }
 
-/* DESKRIPSI */
+/* --- 6. DESKRIPSI --- */
+.description-area {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
 .description-area p {
-    font-size: 0.85rem;
-    color: #ddd;
-    margin-bottom: 35px;
+    font-size: 0.9rem;
+    color: #e0e0e0;
     line-height: 1.6;
     font-weight: 300;
     font-style: italic;
 }
 
-/* --- TOMBOL LINKS DENGAN ICON (UPDATED) --- */
+/* --- 7. TOMBOL LINKS (DENGAN LOGO) --- */
 .links-area {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px; /* Jarak antar tombol */
 }
 
 .btn {
-    /* Menggunakan Flexbox agar Icon dan Teks rapi di tengah */
+    /* Flexbox untuk menengahkan Logo + Teks */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Jarak antara Icon dan Teks */
+    gap: 10px;
     
     width: 100%;
-    padding: 15px 0;
+    padding: 16px 0; /* Area sentuh nyaman */
     text-decoration: none;
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 50px;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    transition: 0.3s;
-    background: transparent;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    background: rgba(0,0,0,0.1); 
     text-transform: uppercase;
+    font-weight: 400;
 }
 
-.btn:hover {
+.btn:hover, .btn:active {
     background-color: white;
     color: black;
     border-color: white;
+    transform: translateY(-2px);
 }
 
-/* Mengatur ukuran icon sedikit lebih besar */
 .btn i {
-    font-size: 1.1rem; 
+    font-size: 1.2rem; /* Ukuran Logo Ikon */
 }
 
-/* FOOTER */
+/* --- 8. FOOTER --- */
 .footer-area {
-    margin-top: 50px;
-    font-size: 0.6rem;
+    margin-top: 40px;
+    font-size: 0.65rem;
     letter-spacing: 2px;
-    color: #888;
+    color: #aaa;
+    opacity: 0.8;
+}
+
+/* --- 9. RESPONSIVE (KHUSUS HP KECIL) --- */
+/* Agar font tidak terlalu besar di HP layar sempit (lebar < 380px) */
+@media screen and (max-width: 380px) {
+    .phone-container {
+        padding: 30px 15px;
+        width: 95%;
+    }
+    .brand-name {
+        font-size: 2.5rem; /* Kecilkan judul sedikit */
+    }
+    .script-title h2 {
+        font-size: 1.8rem;
+    }
+    .btn {
+        font-size: 0.75rem; 
+        padding: 14px 0;
+    }
 }

@@ -6,38 +6,59 @@
     -webkit-tap-highlight-color: transparent; /* Hilangkan blok biru saat klik di Android */
 }
 
+/* Fallback warna hitam (agar tidak putih jika gambar belum load) */
+html {
+    background-color: #000;
+}
+
 body {
     font-family: 'Lato', sans-serif;
     color: white;
     
-    /* Background Tetap */
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('bg.jpg');
-    background-size: cover;      
-    background-position: center; 
-    background-attachment: fixed;
-
-    /* PENINGKATAN STABILITAS LAYOUT HP */
+    /* PENTING: Background kita pindah ke ::before agar stabil di HP */
+    
+    /* Layout Center */
     display: flex;
     justify-content: center;
     align-items: center; 
     
-    /* Gunakan 100dvh agar pas dengan browser HP modern (Chrome/Safari) */
+    /* Gunakan 100dvh agar pas dengan browser HP modern */
     min-height: 100vh;
     min-height: 100dvh; 
     
     /* Memberi jarak atas bawah agar tidak mentok saat di-scroll */
     padding: 20px 0; 
+    position: relative;
+}
+
+/* --- SOLUSI LAYAR PUTIH (BACKGROUND TETAP) --- */
+body::before {
+    content: "";
+    position: fixed; /* Kunci background agar tidak ikut scroll/naik turun */
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Gambar Background */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('bg.jpg');
+    background-size: cover;      
+    background-position: center; 
+    background-repeat: no-repeat;
+    
+    z-index: -1; /* Taruh di paling belakang */
+    will-change: transform; /* Optimasi untuk iPhone */
 }
 
 /* --- 2. KONTAINER UTAMA (KARTU KACA) --- */
 .phone-container {
-    width: 90%; /* Lebar fleksibel (90% dari layar HP) */
-    max-width: 420px; /* Batas maksimal lebar agar tidak terlalu lebar di Tablet */
+    width: 90%; /* Lebar fleksibel */
+    max-width: 420px; /* Batas maksimal lebar */
     
     /* Glassmorphism (Efek Kaca) */
     background-color: rgba(0, 0, 0, 0.3); 
-    backdrop-filter: blur(8px); /* Blur lebih kuat agar teks jelas */
-    -webkit-backdrop-filter: blur(8px); /* Support iPhone */
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
     
     padding: 40px 25px;
     text-align: center;
@@ -52,7 +73,7 @@ body {
     align-items: center;
 }
 
-/* --- 3. JUDUL UTAMA (HULAIF - PRATA) --- */
+/* --- 3. JUDUL UTAMA (PRATA) --- */
 .brand-section {
     margin-bottom: 25px;
     margin-top: 5px;
@@ -62,7 +83,7 @@ body {
 .brand-name {
     font-family: 'Prata', serif; 
     font-weight: 400; 
-    font-size: 3rem; /* Ukuran Besar */
+    font-size: 3rem; 
     line-height: 1.1;
     margin-bottom: 5px;
     color: white;
@@ -83,7 +104,7 @@ body {
 .slider-container {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Kunci rasio agar stabil */
+    aspect-ratio: 16 / 9; /* Kunci rasio */
     margin-bottom: 25px;
     
     border-radius: 8px; 
@@ -150,7 +171,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Jarak antar tombol */
+    gap: 12px; 
 }
 
 .btn {
@@ -161,7 +182,7 @@ body {
     gap: 10px;
     
     width: 100%;
-    padding: 16px 0; /* Area sentuh nyaman */
+    padding: 16px 0; 
     text-decoration: none;
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.6);
@@ -182,7 +203,7 @@ body {
 }
 
 .btn i {
-    font-size: 1.2rem; /* Ukuran Logo Ikon */
+    font-size: 1.2rem; /* Ukuran Logo */
 }
 
 /* --- 8. FOOTER --- */
@@ -195,14 +216,13 @@ body {
 }
 
 /* --- 9. RESPONSIVE (KHUSUS HP KECIL) --- */
-/* Agar font tidak terlalu besar di HP layar sempit (lebar < 380px) */
 @media screen and (max-width: 380px) {
     .phone-container {
         padding: 30px 15px;
         width: 95%;
     }
     .brand-name {
-        font-size: 2.5rem; /* Kecilkan judul sedikit */
+        font-size: 2.5rem; 
     }
     .script-title h2 {
         font-size: 1.8rem;

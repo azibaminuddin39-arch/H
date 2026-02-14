@@ -1,0 +1,158 @@
+/* --- RESET --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('bg.jpg');
+    background-size: cover;      
+    background-position: center; 
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.phone-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: rgba(0, 0, 0, 0.2); 
+    backdrop-filter: blur(3px);
+    padding: 40px 25px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 90vh;
+}
+
+/* JUDUL (PRATA) */
+.brand-section {
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+.brand-name {
+    font-family: 'Prata', serif; 
+    font-weight: 400; 
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 8px;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+.brand-sub {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* SLIDESHOW (LANDSCAPE 16:9) */
+.slider-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 4px; 
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.slider-wrapper img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    animation: fade 20s infinite;
+}
+@keyframes fade {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    20% { opacity: 1; }
+    30% { opacity: 0; }
+    100% { opacity: 0; }
+}
+.slider-wrapper img:nth-child(1) { animation-delay: 0s; }
+.slider-wrapper img:nth-child(2) { animation-delay: 4s; }
+.slider-wrapper img:nth-child(3) { animation-delay: 8s; }
+.slider-wrapper img:nth-child(4) { animation-delay: 12s; }
+.slider-wrapper img:nth-child(5) { animation-delay: 16s; }
+
+/* TULISAN SAMBUNG */
+.script-title h2 {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+/* DESKRIPSI */
+.description-area p {
+    font-size: 0.85rem;
+    color: #ddd;
+    margin-bottom: 35px;
+    line-height: 1.6;
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* --- TOMBOL LINKS DENGAN ICON (UPDATED) --- */
+.links-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    /* Menggunakan Flexbox agar Icon dan Teks rapi di tengah */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Jarak antara Icon dan Teks */
+    
+    width: 100%;
+    padding: 15px 0;
+    text-decoration: none;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    background: transparent;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: white;
+    color: black;
+    border-color: white;
+}
+
+/* Mengatur ukuran icon sedikit lebih besar */
+.btn i {
+    font-size: 1.1rem; 
+}
+
+/* FOOTER */
+.footer-area {
+    margin-top: 50px;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: #888;
+}

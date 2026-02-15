@@ -135,7 +135,7 @@ body::before {
     color: transparent;
     
     /* Animasi kilau berjalan terus menerus */
-    animation: textShine 5s linear infinite;
+    animation: textShine 4s linear infinite;
     
     /* Sedikit bayangan hitam agar teks terbaca jelas di background terang/gelap */
     filter: drop-shadow(0 2px 0px rgba(0,0,0,0.5));
@@ -648,3 +648,4 @@ details p {
         bottom: 20px; left: 20px;
     }
 }
+

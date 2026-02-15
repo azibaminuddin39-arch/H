@@ -141,35 +141,6 @@ body::before {
     }
 }
 
-/* --- ANIMASI TEKS HULAIF (CINEMATIC) --- */
-.brand-name {
-    font-family: 'Cinzel', serif; 
-    font-weight: 600; 
-    font-size: 2.8rem; 
-    line-height: 1.2;
-    margin-bottom: 5px;
-    color: white;
-    
-    /* Animasi dijalankan sekali saat web dibuka */
-    animation: cinematicIn 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    
-    /* Awalnya transparan */
-    opacity: 0;
-}
-
-@keyframes cinematicIn {
-    0% {
-        opacity: 0;
-        letter-spacing: 15px; /* Huruf berjauhan */
-        filter: blur(10px); /* Agak buram */
-    }
-    100% {
-        opacity: 1;
-        letter-spacing: 2px; /* Kembali rapat */
-        filter: blur(0); /* Jelas */
-    }
-}
-
 .brand-sub {
     font-family: 'Lato', sans-serif;
     font-size: 0.75rem;
@@ -671,5 +642,6 @@ details p {
         bottom: 20px; left: 20px;
     }
 }
+
 
 

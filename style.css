@@ -108,6 +108,7 @@ body::before {
     width: 100%;
 }
 
+/* --- ANIMASI TEKS HULAIF (CINEMATIC) --- */
 .brand-name {
     font-family: 'Cinzel', serif; 
     font-weight: 600; 
@@ -115,8 +116,25 @@ body::before {
     line-height: 1.2;
     margin-bottom: 5px;
     color: white;
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    
+    /* Animasi dijalankan sekali saat web dibuka */
+    animation: cinematicIn 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    
+    /* Awalnya transparan */
+    opacity: 0;
+}
+
+@keyframes cinematicIn {
+    0% {
+        opacity: 0;
+        letter-spacing: 15px; /* Huruf berjauhan */
+        filter: blur(10px); /* Agak buram */
+    }
+    100% {
+        opacity: 1;
+        letter-spacing: 2px; /* Kembali rapat */
+        filter: blur(0); /* Jelas */
+    }
 }
 
 .brand-sub {
@@ -620,3 +638,4 @@ details p {
         bottom: 20px; left: 20px;
     }
 }
+

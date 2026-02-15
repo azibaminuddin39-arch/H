@@ -1,14 +1,18 @@
-/* --- 1. SETUP FONT CUSTOM (AOTTEN) --- */
-/* Wajib punya file Aotten.otf atau Aotten.ttf di folder yang sama */
+/* =========================================
+   1. SETUP FONT CUSTOM (AOTTEN)
+   Wajib punya file Aotten.otf/.ttf di folder yang sama
+   ========================================= */
 @font-face {
     font-family: 'Aotten';
-    src: url('Aotten.otf') format('opentype'),
-         url('Aotten.ttf') format('truetype');
+    src: url('PlayfairDisplay.ttf') format('opentype'),
+         url('PlayfairDisplay.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
-/* --- 2. RESET & DASAR --- */
+/* =========================================
+   2. RESET & DASAR
+   ========================================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -17,7 +21,7 @@
 }
 
 html {
-    background-color: #000; /* Warna cadangan jika gambar gagal load */
+    background-color: #000; /* Warna cadangan */
 }
 
 body {
@@ -36,7 +40,9 @@ body {
     position: relative;
 }
 
-/* --- 3. BACKGROUND ANTI-SCROLL (FIX LAYAR PUTIH) --- */
+/* =========================================
+   3. BACKGROUND ANTI-SCROLL
+   ========================================= */
 body::before {
     content: "";
     position: fixed; /* Kunci mati background */
@@ -55,7 +61,9 @@ body::before {
     will-change: transform;
 }
 
-/* --- 4. KARTU UTAMA (GLASSMORPHISM) --- */
+/* =========================================
+   4. KARTU UTAMA (GLASSMORPHISM)
+   ========================================= */
 .phone-container {
     width: 90%; 
     max-width: 420px; 
@@ -75,9 +83,25 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    /* Animasi Masuk (Fade In Up) */
+    animation: fadeInUp 1.5s ease-out;
 }
 
-/* --- 5. LOGO UTAMA (CINZEL) --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   5. LOGO UTAMA (CINZEL)
+   ========================================= */
 .brand-section {
     margin-bottom: 25px;
     margin-top: 5px;
@@ -85,14 +109,14 @@ body::before {
 }
 
 .brand-name {
-    font-family: 'Cinzel', serif; /* Font Logo Baru */
+    font-family: 'Cinzel', serif; 
     font-weight: 600; 
     font-size: 2.8rem; 
     line-height: 1.2;
     margin-bottom: 5px;
     color: white;
-    letter-spacing: 2px; /* Jarak antar huruf */
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4); /* Efek Glowing */
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
 .brand-sub {
@@ -105,7 +129,56 @@ body::before {
     margin-top: 5px;
 }
 
-/* --- 6. SLIDESHOW (16:9) --- */
+/* --- EFEK MENGETIK (Typing Effect) --- */
+.typing-text {
+    color: #ffd700; /* Warna emas */
+    font-weight: bold;
+    border-right: 2px solid white; /* Kursor */
+    padding-right: 5px;
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: white; }
+}
+
+/* --- STATUS BADGE (Live Status) --- */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(46, 204, 113, 0.2); 
+    border: 1px solid #2ecc71;
+    color: #2ecc71; 
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #2ecc71;
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+
+/* =========================================
+   6. SLIDESHOW & GALLERY
+   ========================================= */
 .slider-container {
     position: relative;
     width: 100%;
@@ -137,19 +210,46 @@ body::before {
     100% { opacity: 0; }
 }
 
+/* Pengaturan Waktu Slide (5 Gambar) */
 .slider-wrapper img:nth-child(1) { animation-delay: 0s; }
 .slider-wrapper img:nth-child(2) { animation-delay: 4s; }
 .slider-wrapper img:nth-child(3) { animation-delay: 8s; }
 .slider-wrapper img:nth-child(4) { animation-delay: 12s; }
 .slider-wrapper img:nth-child(5) { animation-delay: 16s; }
 
+/* --- MINI GALLERY GRID (Mosaik Foto) --- */
+.mini-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 Kolom */
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 25px;
+}
 
-/* --- 7. JUDUL "Wedding Documentation" (AOTTEN) --- */
+.mini-gallery img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.mini-gallery img:hover {
+    transform: scale(1.05);
+    border-color: #ffd700;
+    z-index: 5;
+}
+
+
+/* =========================================
+   7. JUDUL & DESKRIPSI
+   ========================================= */
 .script-title h2 {
-    /* Prioritas: Aotten (file sendiri) -> Pinyon (Google Font) -> Cursive */
     font-family: 'Aotten', 'Pinyon Script', cursive; 
     font-weight: 400;
-    font-size: 1.5rem; /* Ukuran disesuaikan */
+    font-size: 1.5rem; 
     color: #f0f0f0;
     margin-bottom: 15px;
     margin-top: 10px;
@@ -157,7 +257,6 @@ body::before {
     line-height: 1.3;
 }
 
-/* --- 8. DESKRIPSI --- */
 .description-area {
     width: 100%;
     margin-bottom: 30px;
@@ -171,7 +270,10 @@ body::before {
     font-style: normal;
 }
 
-/* --- 9. TOMBOL (ICON + TEXT) --- */
+
+/* =========================================
+   8. TOMBOL LINKS (SOSMED BERWARNA)
+   ========================================= */
 .links-area {
     width: 100%;
     display: flex;
@@ -193,12 +295,16 @@ body::before {
     border-radius: 50px;
     font-size: 0.85rem;
     letter-spacing: 1.5px;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease; /* Transisi halus */
     background: rgba(0,0,0,0.1); 
     text-transform: uppercase;
     font-weight: 400;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
+/* Hover Default (Putih) */
 .btn:hover, .btn:active {
     background-color: white;
     color: black;
@@ -210,7 +316,260 @@ body::before {
     font-size: 1.2rem; 
 }
 
-/* --- 10. FOOTER --- */
+/* --- WARNA KHUSUS PER TOMBOL --- */
+
+/* 1. WHATSAPP (Hijau) */
+.btn-wa:hover {
+    background-color: #25d366; 
+    border-color: #25d366;
+    color: white;
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.6); 
+}
+
+/* 2. INSTAGRAM (Gradasi) */
+.btn-ig:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border-color: transparent; 
+    color: white;
+    box-shadow: 0 0 15px rgba(220, 39, 67, 0.6); 
+}
+
+/* 3. TIKTOK (Hitam Glitch) */
+.btn-tt:hover {
+    background-color: #000000; 
+    border-color: #FE2C55; 
+    color: white;
+    box-shadow: -3px -3px 0px rgba(37, 244, 238, 0.5), 3px 3px 0px rgba(254, 44, 85, 0.5);
+}
+
+/* 4. PRICELIST (Emas) */
+.btn-price {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 215, 0, 0.5); 
+    color: #ffd700;
+}
+.btn-price:hover {
+    background: #ffd700;
+    color: black;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+
+/* =========================================
+   9. FITUR TAMBAHAN (FAQ, TESTIMONI, POPUP)
+   ========================================= */
+
+/* --- FAQ ACCORDION --- */
+.faq-section {
+    width: 100%;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    margin: 20px 0 10px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 5px;
+    display: inline-block;
+    color: #ffd700;
+}
+
+details {
+    width: 100%;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+summary {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    list-style: none;
+    position: relative;
+}
+
+summary::after {
+    content: '+'; 
+    position: absolute;
+    right: 15px;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+details[open] summary::after {
+    transform: rotate(45deg);
+}
+
+details p {
+    padding: 0 15px 15px;
+    font-size: 0.85rem;
+    color: #ddd;
+    line-height: 1.5;
+    margin: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 10px;
+}
+
+/* --- TESTIMONI SLIDER --- */
+.testimonial-box {
+    margin: 20px 0;
+    padding: 15px;
+    border-left: 3px solid #ffd700; 
+    background: rgba(255, 255, 255, 0.05);
+    text-align: left;
+    border-radius: 0 10px 10px 0;
+}
+
+.testimonial-box p {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #eee;
+    margin-bottom: 5px;
+}
+
+.testimonial-box span {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+/* --- POPUP PRICELIST --- */
+.popup-overlay {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999; 
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.popup-content {
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #aaa;
+}
+.close-btn:hover { color: white; }
+
+.package-item {
+    margin: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+}
+.package-item h4 { color: #ffd700; margin-bottom: 5px; }
+.package-item p { font-size: 0.8rem; color: #ccc; margin: 2px 0; }
+.price { display: block; margin-top: 5px; font-weight: bold; color: white; }
+
+.book-now {
+    background: #ffd700;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+    width: 100%;
+}
+
+
+/* =========================================
+   10. FLOATING BUTTONS (MUSIC & WA)
+   ========================================= */
+
+/* Music Button */
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px; /* Di kiri bawah */
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.music-btn i { color: white; font-size: 1.2rem; }
+
+.playing {
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.2);
+    animation: spin 3s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* WhatsApp Floating */
+.float-wa {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px; /* Di kanan bawah */
+    background-color: #25d366; 
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    animation: pulse-green 2s infinite;
+}
+
+.float-wa:hover { background-color: #128C7E; }
+
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+
+/* =========================================
+   11. FOOTER & RESPONSIVE
+   ========================================= */
 .footer-area {
     margin-top: 40px;
     font-size: 0.65rem;
@@ -219,7 +578,24 @@ body::before {
     opacity: 0.8;
 }
 
-/* --- 11. RESPONSIVE HP KECIL --- */
+/* Sosmed Footer (Kecil) */
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.social-icons a {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+.social-icons a:hover {
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Responsif HP Kecil */
 @media screen and (max-width: 380px) {
     .phone-container {
         padding: 30px 15px;
@@ -235,6 +611,12 @@ body::before {
         font-size: 0.75rem; 
         padding: 14px 0;
     }
+    .float-wa {
+        bottom: 20px; right: 20px;
+        width: 50px; height: 50px;
+        font-size: 24px;
+    }
+    .music-btn {
+        bottom: 20px; left: 20px;
+    }
 }
-
-
